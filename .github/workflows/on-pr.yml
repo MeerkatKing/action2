@@ -8,10 +8,15 @@ on:
         description: 'The tag name for the release'
         required: true
         type: string
+      prerelease:
+        description: 'Is this a prerelease?'
+        required: false
+        default: 'false'
 
 jobs:
   call-reusable-release:
     uses: MeerkatKing/action3/.github/workflows/reusable-release.yml@main  # 调用复用工作流
     with:
-      tag_name: ${{ inputs.tag_name }}  # 传递输入参数
+      tag_name: ${{ inputs.tag_name }}  
+      prerelease: ${{ inputs.prerelease }}  
     secrets: inherit  # 继承当前仓库的所有 secrets
