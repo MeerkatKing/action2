@@ -1,0 +1,12 @@
+# .github/workflows/bugfix.yml
+name: Trigger Reusable Bugfix Workflow
+
+on:
+  push:
+    branches:
+      - release/**   # 监听所有 release 分支的推送事件
+
+jobs:
+  call-reusable-bugfix:
+    uses: MeerkatKing/action3/.github/workflows/reusable-bugfix.yml@main  # 调用复用工作流 
+    secrets: inherit  # 继承当前仓库的所有 secrets
